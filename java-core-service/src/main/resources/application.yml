@@ -1,0 +1,33 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: java-core-service
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      retries: 10
+      properties:
+        linger.ms: 5
+        batch.size: 65536
+        compression.type: snappy
+        enable.idempotence: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+app:
+  topics:
+    main: ${APP_TOPICS_MAIN:events.main}
+    retry: ${APP_TOPICS_RETRY:events.retry}
+    dlq: ${APP_TOPICS_DLQ:events.dlq}

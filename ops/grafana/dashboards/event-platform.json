@@ -1,0 +1,37 @@
+{
+  "annotations": {"list": []},
+  "editable": true,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Java Published Events / sec",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+      "targets": [{"expr": "rate(events_published_total[1m])"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Go Consumer Processed / sec",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "targets": [{"expr": "rate(consumer_processed_total[1m])"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Go Consumer Failed / sec",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
+      "targets": [{"expr": "rate(consumer_failed_total[1m])"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Processing Latency p95",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8},
+      "targets": [{"expr": "histogram_quantile(0.95, sum(rate(consumer_processing_seconds_bucket[1m])) by (le))"}]
+    }
+  ],
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": ["kafka", "golang", "java"],
+  "templating": {"list": []},
+  "time": {"from": "now-15m", "to": "now"},
+  "title": "Planet Scale Event Platform",
+  "version": 1
+}

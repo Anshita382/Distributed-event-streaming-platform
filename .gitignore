@@ -1,0 +1,22 @@
+# OS / editor
+.DS_Store
+.vscode/
+.idea/
+*.swp
+
+# Java
+java-core-service/target/
+
+# Go
+**/bin/
+**/.cache/
+coverage.out
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Logs / temp
+*.log
+.tmp/
