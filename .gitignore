@@ -1,4 +1,8 @@
-# OS / editor
+Now paste this inside the editor:
+
+.env
+*.log
+.DS_Store# OS / editor
 .DS_Store
 .vscode/
 .idea/
